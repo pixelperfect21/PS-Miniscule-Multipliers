@@ -18,6 +18,7 @@ addLayer("p", {
         mult = buyableEffect('p', 12)
         if (hasUpgrade('p', 12)) {mult = mult.mul(1.5)}
         if (hasUpgrade('p', 14)) {mult = mult.mul(upgradeEffect('p', 14))}
+	if (hasUpgrade('p', 15)) {mult = mult.mul(upgradeEffect('p', 15))}
 	if (hasUpgrade('m', 21)) {mult = mult.mul(upgradeEffect('m', 21))}
 	mult = mult.mul(buyableEffect('s', 11))
         return mult
@@ -125,7 +126,7 @@ addLayer("s", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+	points: new Decimal(0),
     }},
     color: "#9C27B0",
     requires: new Decimal(150), // Can be a function that takes requirement increases into account
@@ -424,7 +425,7 @@ addLayer("b", {
         return new Decimal(1)
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return player.b.points.gte(1)},
+    layerShown(){return hasMilestone('s', 2) || player.b.points.gte(1)},
     branches: ['s'],
     brickMult() {
         let mult = player.b.points.pow(1.5)
@@ -570,7 +571,7 @@ addLayer("b", {
                 return new Decimal(2).pow(getBuyableAmount('b', this.id))
             },
             unlocked() {
-                return hasMilestone('s', 1) || player.b.points.gte(1)
+                return hasMilestone('b', 1)
             },
         },
     },
