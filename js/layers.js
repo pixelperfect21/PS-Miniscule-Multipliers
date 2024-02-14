@@ -18,6 +18,8 @@ addLayer("p", {
         mult = buyableEffect('p', 12)
         if (hasUpgrade('p', 12)) {mult = mult.mul(1.5)}
         if (hasUpgrade('p', 14)) {mult = mult.mul(upgradeEffect('p', 14))}
+	if (hasUpgrade('m', 21)) {mult = mult.mul(upgradeEffect('m', 21))}
+	mult = mult.mul(buyableEffect('s', 11))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -568,7 +570,7 @@ addLayer("b", {
                 return new Decimal(2).pow(getBuyableAmount('b', this.id))
             },
             unlocked() {
-                return hasMilestone('b', 1)
+                return hasMilestone('s', 1) || player.b.points.gte(1)
             },
         },
     },
