@@ -6,7 +6,7 @@ let modInfo = {
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "Pixel's Incremental Server",
-	discordLink: "https://discord.gg/sTudY5p5cV",
+	discordLink: "https://discord.gg/5K4DXpGeU2",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
